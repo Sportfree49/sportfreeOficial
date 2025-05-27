@@ -1,0 +1,20 @@
+{
+    "name": "Sportfree",
+    "short_name": "SportF",
+    "start_url": ".",
+    "background_color": "#121212",
+    "theme_color": "#1DB954",
+    "icons": [
+      {
+        "src": "icones/app.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        
+        "src": "icones/app512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }  
+  ]
+}

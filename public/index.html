@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1DB954" >
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <title>Sportfree</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="/icones/appIcon.ico">
+  
+</head>
+<body>
+
+
+
+
+  <div class="player">
+    <button id="botaoPlaylist">
+      <img src="icones/playlist.png" alt="playlist" width="30">
+    </button>
+    <h1 id="tituloLogo"><span id="sport">Sport</span>free</h1>
+    
+    <img id="capa_musica" src="imagensCapa/capaSlay.png" alt="capa da música" width="300">
+    
+    <p id="nome-musica">Nome da Música - Artista</p>
+    
+    <audio id="audio">
+      <source src="pasta_musicas/slay.mp3" type="audio/mp3">
+    </audio>
+
+    <div id="caixaPlaylist" class="caixa-playlist">
+      <button id="fecharPlaylist">Fechar</button>
+      <h2>Playlist</h2>
+      <div id="listaMusicas" class="lista-musicas"></div>
+    </div>
+
+    <div id="progresso">
+      <span id="tempo-atual">0:00</span>
+      <input type="range" id="barra-progresso" value="0" min="0" max="100">
+      <span id="duracao-total">0:00</span>
+    </div>
+
+    
+    <div class="controles">
+        <button id= "prevBtn" onclick="musicaAnterior()">
+        <img src="icones/retroceder.png" alt="retroceder" width="40">
+        </button>
+        
+        <button id="playPauseBtn">
+          <img id="iconePlayPause" src="icones/play.png" alt="Play" width="40">
+        </button>
+
+        <button id="nextBtn" onclick="proximaMusica()">
+        <img src="icones/avancar.png" alt="avancar" width="40">
+        </button>
+      </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+<script>
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('serviceWorker.js')
+      .then(function(registro) {
+        console.log('Service Worker registrado com sucesso:', registro.scope);
+      })
+      .catch(function(erro) {
+        console.log('Erro ao registrar o Service Worker:', erro);
+      });
+  }
+</script>
+</html>
