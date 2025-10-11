@@ -1,27 +1,50 @@
 body {
     margin: 0;
     padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-family: sans-serif;
     background-color: #121212;
     color: white;
+    font-family: sans-serif;
   }
+
+  #player-background{
+    border-radius: 10px;
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    transition: background-image 0.5s ease-in-out;
+    z-index: -1;
+    
+    filter: blur(20px);
+    transform: scale(1.05);
+  }
+
   
   .player {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     align-items: center;
-    background-color: #201716;
-    padding: 20px;
+    background-color: rgba(18, 18, 18, 0.8);
+    padding: 0px;
     border-radius: 10px;
     box-shadow: 0 0 20px #000;
-    width: 90%;
-    max-width:400px ;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5; /* Z-index menor que o menu, mas maior que o fundo */
   }
+
+.musica-item.dragging-over {
+    border: 2px dashed #ff9900;
+    opacity: 0.7;
+}
+
 
   .controles button{
     background: transparent;
@@ -37,18 +60,28 @@ body {
     gap: 20px;
     margin-top: 20px;
   }
+
+  #shuffleBtn{
+    order: 1; 
+  }
+
   #prevBtn{
-    order: 1;
+    order: 2;
   }
 
 
   #playPauseBtn{
-    order: 2;
+    order: 3;
   }
 
   #nextBtn{
-    order: 3;
+    order: 4;
   }
+
+  #botaoPlaylist{
+    order: 5;
+  }
+
 
   .play {
     margin: 10px 5px;
@@ -63,32 +96,46 @@ body {
   }
 
   #capa_musica{
-    margin-top: 15px;
+    margin-top: 100px;
     border-radius: 15px;
     max-width: 100%;
     height: auto;
   }
 
+  .banner {
+    display: flex; /* Agora o banner é um flexbox */
+    flex-direction: row; /* Itens (botões) lado a lado */
+    align-items: center; /* Alinha os botões verticalmente ao centro */
+    justify-content: space-between; /* ESSENCIAL: Coloca um botão na esquerda e outro na direita */
+    width: 100%; /* Ocupa toda a largura do player */
+    padding: 20px 10px; /* Adiciona um pequeno padding interno nas laterais */
+    box-sizing: border-box; /* Garante que padding não aumente a largura total */
+    margin-bottom: 20px; /* Espaço abaixo do banner para o resto do conteúdo */
+}
 
-  #botaoPlaylist {
-    align-self: flex-start;
-    
-    top: 20%;
-    left: 20%; 
-    border-radius: 5px;
-    padding: 0px;
-    border-radius: 5px;
-    font-size: 15px;
-    font-weight: bold;
-    background-color: #201716;
-    color: white;
-    width: 80px;
-    height: 20px;
-    cursor: pointer; 
-    border: none;
-    transition: background-color 0,3;
 
-  }
+
+#botaoPlaylist {
+    background-color: transparent; /* Mudei para transparente para ter aquele efeito translúcido */
+    padding: 0px; 
+    border: none; /* Garante que não tem borda */
+    cursor: pointer;
+    /* Ajuste o tamanho dos ícones aqui ou no HTML para 30px, como no HTML */
+    width: 30px; /* Adapte ao tamanho da imagem do ícone */
+    height: 30px; /* Adapte ao tamanho da imagem do ícone */
+    /* Remova as propriedades de posicionamento que não são mais necessárias se o banner for flex: */
+    /* align-self: flex-end; top: 20%; right: 20%; */ /* etc. */
+    transition: background-color 0.3s ease; /* Transição suave */
+    border-radius: 50%; /* Faz o hover ficar redondo */
+}
+
+
+
+/* Efeito de hover translúcido (já temos, bom) */
+#checkUpdateButton:hover,
+#botaoPlaylist:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* Fundo sutil ao passar o mouse */
+}
 
   .caixa-playlist{
     display: none;
@@ -96,13 +143,15 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #201716 ;
+    background-color: #000 ;
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 0 30px #000;
     z-index: 1000;
     max-width: 80%;
     max-height: 80%;
+    width: 100%;
+    height: 60%;
     overflow-y: auto;
     color: white;
   }
@@ -156,7 +205,6 @@ body {
     gap: 2px;
     border-radius: 5px;
     width: 90%;
-    
   }
 
   #tempo-atual,
@@ -175,17 +223,228 @@ body {
   }
 
   #tituloLogo{
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
 
   #sport{
-    color: black
+    color: black;
   }
 
+  .download-button,
+.play-from-list-button {
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.download-button:hover,
+.play-from-list-button:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Um leve fundo ao passar o mouse */
+    border-radius: 50%; /* Faz o fundo ficar arredondado */
+}
+
+.download-button:hover,
+.play-from-list-button:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Um leve fundo ao passar o mouse */
+    border-radius: 50%; /* Faz o fundo ficar arredondado */
+}
+
+.download-button .download-icon{
+  width: 20px;
+  height: 20px;
+  display: block;
+  object-fit: contain;
+}
+
+.play-from-list-button .play-icon{
+  width: 20px;
+  height: 20px;
+  display: block;
+  object-fit: contain;
+}
   
+  
+  /* Estilo para cada item da música na playlist */
+.musica-item {
+    display: flex; /* Usa Flexbox para organizar os itens horizontalmente */
+    align-items: center; /* Alinha os itens verticalmente ao centro */
+    padding: 10px 15px; /* Espaçamento interno */
+    border-bottom: 1px solid #333; /* Uma linha divisória entre as músicas */
+    color: #fff; /* Cor do texto */
+    background-color: #282828; /* Cor de fundo */
+    cursor: pointer; /* Indica que o item pode ser clicado */
+    transition: background-color 0.3s ease; /* Transição suave para o hover */
+}
+
+.musica-item:hover {
+    background-color: #393b47; /* Cor de fundo ao passar o mouse */
+}
+
+/* Estilo para a imagem da capa dentro do musica-item */
+.musica-item img {
+    width: 50px; /* Tamanho da capa */
+    height: 50px;
+    border-radius: 5px; /* Bordas arredondadas para a capa */
+    margin-right: 2px; /* Espaço à direita da capa */
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+}
+
+/* Estilo para o nome da música (span) */
+.musica-item span {
+    flex-grow: 1; /* Permite que o nome da música ocupe o máximo de espaço possível */
+    font-size: 1em; /* Tamanho da fonte */
+    /*white-space: nowrap; /* Evita que o texto quebre linha */
+    /*overflow: hidden; /* Esconde o texto que transborda */
+    /*text-overflow: ellipsis; /* Adiciona "..." se o texto for muito longo */
+}
+
+/* Posicionamento dos botões de download e play */
+.musica-item .download-button,
+.musica-item .play-from-list-button {
+    margin-left: 10px; /* Espaço entre o nome da música e os botões */
+    flex-shrink: 0; /* Impede que os botões encolham */
+}
+
+#splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #121212;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#splash-screen img{
+  width: 150px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.carregamento{
+  display: flex;
+}
+
+.carregamento div{
+  width: 16px;
+  height: 16px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  margin: 0 5px;
+  animation: pulse 1.2s infinite ease-in-out;
+}
+
+.carregamento div:nth-child(2){
+  animation-delay: 0.4s;
+}
+
+.carregamento div:nth-child(3){
+  animation-delay: 0.8s;
+}
+
+@keyframes pulse{
+  0% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+}
+
+.splash-hidden{
+  opacity: 0; /* Torna transparente */
+  visibility: hidden;
+}
+
+.menuprincipal  {
+    display: block; /* Visível por padrão */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right, rgb(1, 1, 20), rgba(37, 26, 26, 0.959));
+    padding: 0px;
+    border-radius: 15px;
+    box-shadow: 0 0 30px #000;
+    overflow-y: auto;
+    color: white;
+    z-index: 10; /* Z-index alto para ficar por cima */
+  
+}
+
+.nav-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: #050505; /* cor de fundo */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  box-shadow: 0 -2px 10px rgba(156, 149, 149, 0.4);
+  z-index: 1000;
+}
+
+.nav-bar button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
 
 
+#search-form{
+  margin-top: 0px;
+  display: flex;
+  flex-direction: row; 
+}
 
-  
-  
-  
+
+#search-input{
+
+  width: 90%;
+  height: 40px;
+  padding-block: 0px;
+  padding-inline: 0px;
+  border: none;
+}
+
+.buscar{
+  border-radius: 0 40px 40px 0;
+  cursor: pointer;
+  padding: 10;
+  border: none;
+}
+
+.fundo-menu{
+    margin-top: 150px;
+    border-radius: 15px;
+    max-width: 100%;
+    height: auto;
+}
+
