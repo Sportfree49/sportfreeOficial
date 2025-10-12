@@ -37,8 +37,8 @@ const musicas = [
     
     {
         nome: "Slay",
-        arquivo: "public/pasta_musicas/slay.mp3",
-        capa: "public/imagensCapa/capaSlay.png"
+        arquivo: "pasta_musicas/slay.mp3",
+        capa: "imagensCapa/capaSlay.png"
     },
     {
         nome: "Enough",
