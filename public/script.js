@@ -684,3 +684,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /*node server.js*/
+
+/*git add .
+git commit -m "Adicionando imagens e músicas faltantes"
+git push origin main
+*/
