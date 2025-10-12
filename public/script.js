@@ -43,7 +43,7 @@ const musicas = [
     {
         nome: "Enough",
         arquivo: "pasta_musicas/enough.mp3",
-        capa: "imagensCapa/capaEnough.png"
+        capa: "imagensCapa/capaEnough.PNG"
     },
     { 
         nome: "Aura",
@@ -59,7 +59,7 @@ const musicas = [
     {
         nome: "Orquestra Maldita",
         arquivo: "pasta_musicas/orquestraMaldita.mp3",
-        capa: "imagensCapa/capaOrquestra.png"
+        capa: "imagensCapa/capaOrquestra.PNG"
     },
     {
         nome: "Eu Sento Gabu",
@@ -149,7 +149,7 @@ const musicas = [
     {
         nome: "Nunca Muda",
         arquivo: "pasta_musicas/nuncaMuda.mp3",
-        capa: "imagensCapa/nuncaMuda.png"
+        capa: "imagensCapa/nuncaMuda.PNG"
     },
     {
         nome: "Se não quer Passa a Vez",
@@ -545,7 +545,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    buttonPlayer.addEventListener("click", () => {
+   /* buttonPlayer.addEventListener("click", () => {
         menuprincipal.classList.add("hidden");
         player.classList.remove("hidden");
     });
@@ -553,7 +553,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnHome.addEventListener("click", () => {
         menuprincipal.classList.remove("hidden");
         player.classList.add("hidden");
-    });
+    });*/
 
 
 
