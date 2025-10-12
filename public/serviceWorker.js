@@ -26,7 +26,7 @@ const staticAssets = [
     'icones/aprovado.png',
     'icones/playnew.png',
     'icones//shuffle.png',
-    'imagensCapa/capaSlay.png',
+    'imagensCapa/capaslay.png',
     'imagensCapa/capaEnough.png',
     'imagensCapa/euSentoGabu.jpg',
     'imagensCapa/capaAura.jpg',
