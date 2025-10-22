@@ -192,6 +192,11 @@ const musicas = [
         capa: "imagensCapa/mysteriousGame.jpg"
     },
     {
+        nome: "X-Tali",
+        arquivo: "pasta_musicas/xTali.mp3",
+        capa: "imagensCapa/xTali.jpg"
+    },
+    {
         nome: "Los Voltaje",
         arquivo: "pasta_musicas/losVoltaje.mp3",
         capa: "imagensCapa/losVoltaje.jpg"
