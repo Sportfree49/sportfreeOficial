@@ -153,7 +153,7 @@ const musicas = [
     },
     {
         nome: "Se não quer Passa a Vez",
-        arquivo: "passaAvez.mp3",
+        arquivo: "pasta_musicas/passaAvez.mp3",
         capa: "imagensCapa/passaAvez.jpg"
     },
     {
