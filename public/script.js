@@ -153,7 +153,7 @@ const musicas = [
     },
     {
         nome: "Se não quer Passa a Vez",
-        arquivo: "pasta_musicas/passa_a_Vez_.mp3",
+        arquivo: "passaAvez.mp3",
         capa: "imagensCapa/passaAvez.jpg"
     },
     {
@@ -208,12 +208,12 @@ const musicas = [
     },
     {
         nome: "Slide Da Treme",
-        arquivo: "pasta_musicas/slide_da_Treme.mp3",
+        arquivo: "pasta_musicas/slideDaTreme.mp3",
         capa: "imagensCapa/slideDaTreme.jpg"
     },
     {
         nome: "Automotivo da Turbulência",
-        arquivo: "pasta_musicas/automotivoturbulencia.mp3",
+        arquivo: "pasta_musicas/automotivoDaTurbulencia.mp3",
         capa: "imagensCapa/automotivoDaTurbulencia.jpg"
     },
     {
