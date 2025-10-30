@@ -228,6 +228,65 @@ const musicas = [
     },
 ];
 
+// ====== INTEGRAÇÃO: Shuffle (não altera `musicas`, usa array de índices) ======
+
+// Shuffle state
+let isShuffle = false;            // shuffle ligado/desligado
+let shuffledOrder = [];           // array de índices embaralhados (ex.: [5,2,0,1,...])
+let shufflePos = 0;               // posição atual dentro de shuffledOrder
+let shuffleHistory = [];          // histórico de índices reais tocados (para prev no shuffle)
+
+// Fisher–Yates shuffle para gerar ordem de índices
+function generateShuffledOrder(length) {
+  const arr = Array.from({ length }, (_, i) => i);
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+// Alterna shuffle on/off
+function toggleShuffle() {
+  isShuffle = !isShuffle;
+  if (isShuffle) {
+    // cria nova ordem embaralhada
+    shuffledOrder = generateShuffledOrder(musicas.length);
+    // encontra a posição atual dentro da shuffledOrder para continuar tocando a mesma música
+    const currentReal = getCurrentRealIndex();
+    const pos = shuffledOrder.indexOf(currentReal);
+    shufflePos = pos >= 0 ? pos : 0;
+    shuffleHistory = []; // limpa histórico ao ativar
+  } else {
+    // desativando shuffle: sincroniza indiceAtual com a música real que está tocando
+    const currentReal = getCurrentRealIndex();
+    indiceAtual = currentReal;
+    // limpa estado relacionado
+    shuffledOrder = [];
+    shufflePos = 0;
+    shuffleHistory = [];
+  }
+  updateShuffleButtonUI();
+}
+
+// Retorna o índice real da música que está tocando agora.
+// Se shuffle ativo, pega shuffledOrder[shufflePos]. Se não, usa indiceAtual.
+function getCurrentRealIndex() {
+  if (isShuffle && shuffledOrder.length > 0) {
+    return shuffledOrder[Math.min(shufflePos, shuffledOrder.length - 1)];
+  }
+  return indiceAtual;
+}
+
+// Atualiza o visual do botão shuffle (aplica classe 'active' se existir)
+function updateShuffleButtonUI() {
+  const btn = document.getElementById('btnShuffle');
+  if (!btn) return;
+  btn.classList.toggle('active', isShuffle);
+}
+
+// ====== FIM Shuffle integration ======
+
 async function handleDownloadMusic(music) {
     if (!navigator.serviceWorker) {
         alert('Seu navegador não suporta Service Workers, o download offline não é possível.');
@@ -287,7 +346,9 @@ async function updateDownloadButtonsStatus() {
     });
 }
 async function tocarMusica(autoPlay = true) {
-    const musica = musicas[indiceAtual];
+    // determina índice real que deve tocar (respeitando shuffle)
+    const realIndex = getCurrentRealIndex();
+    const musica = musicas[realIndex];
     if (!musica) return;
     
     const playerBackground = document.getElementById('player-background');
@@ -301,6 +362,9 @@ async function tocarMusica(autoPlay = true) {
     capaMusica.src = musica.capa;
     nomeMusica.textContent = musica.nome;
 
+    // sincroniza indiceAtual com o que está tocando
+    indiceAtual = realIndex;
+
     if (autoPlay) {
         try {
             await audio.play();
@@ -308,10 +372,9 @@ async function tocarMusica(autoPlay = true) {
         } catch (err) {
             console.warn("Play bloqueado até interação do usuário:", err);
         }
-           } 
- 
+    } 
 
-        if ('mediaSession' in navigator) {
+    if ('mediaSession' in navigator) {
         let title = musica.nome;
         let artist = 'Artista Desconhecido';
         const parts = musica.nome.split(' - ');
@@ -341,16 +404,57 @@ async function tocarMusica(autoPlay = true) {
             ]
         });
     }
-        }
+}
 
 async function proximaMusica() {
+  if (isShuffle) {
+    // registra atual no histórico para prev funcionar
+    const atualReal = getCurrentRealIndex();
+    shuffleHistory.push(atualReal);
+
+    shufflePos++;
+    if (shufflePos >= shuffledOrder.length) {
+      // opcional: gerar nova ordem quando acabar (ou voltar ao início)
+      shuffledOrder = generateShuffledOrder(musicas.length);
+      shufflePos = 0;
+    }
+    const proximoReal = shuffledOrder[shufflePos];
+    indiceAtual = proximoReal; // mantém indiceAtual sincronizado com o real
+    await tocarMusica();
+  } else {
     indiceAtual = (indiceAtual + 1) % musicas.length;
     await tocarMusica();
+  }
 }
 
 async function musicaAnterior() {
+  if (isShuffle) {
+    if (shuffleHistory.length > 0) {
+      // volta pelo histórico (comportamento mais intuitivo)
+      const prevReal = shuffleHistory.pop();
+      // atualiza shufflePos para apontar para prevReal se existir na ordem embaralhada
+      const pos = shuffledOrder.indexOf(prevReal);
+      if (pos !== -1) {
+        shufflePos = pos;
+      } else {
+        // se não encontrar, apenas ajusta indiceAtual e toca
+        indiceAtual = prevReal;
+        await tocarMusica();
+        return;
+      }
+      indiceAtual = shuffledOrder[shufflePos];
+      await tocarMusica();
+    } else {
+      // sem histórico, apenas retrocede uma posição na ordem embaralhada
+      shufflePos--;
+      if (shufflePos < 0) shufflePos = shuffledOrder.length - 1;
+      indiceAtual = shuffledOrder[shufflePos];
+      await tocarMusica();
+    }
+  } else {
     indiceAtual = (indiceAtual - 1 + musicas.length) % musicas.length;
     await tocarMusica();
+  }
 }
 
 async function playPauseMusica() {
@@ -580,6 +684,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const button = event.target.closest('.play-from-list-button');
             const index = parseInt(button.dataset.musicIndex, 10);
             if (!isNaN(index) && musicas[index]) {
+                // Se usuário clicar numa música da lista, devemos tocar essa música no contexto atual
+                // Se o shuffle estiver ativo, atualizamos shuffledOrder/shufflePos para apontar para essa música
+                if (isShuffle) {
+                  // encontrar posição na ordem embaralhada
+                  const pos = shuffledOrder.indexOf(index);
+                  if (pos !== -1) {
+                    shufflePos = pos;
+                  } else {
+                    // se não existir (caso raro), insere no próximo slot e aponta para ele
+                    shuffledOrder.splice(shufflePos + 1, 0, index);
+                    shufflePos = shufflePos + 1;
+                  }
+                }
                 indiceAtual = index;
                 tocarMusica();
                 caixaPlaylist.style.display = "none";
@@ -668,11 +785,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const checkUpdateButton = document.getElementById('checkUpdateButton');
-    if (checkUpdateButton) {
-        checkUpdateButton.addEventListener('click', checkForUpdatesManually);
-    }
-
     const splashScreen = document.getElementById('splash-screen');
     if (splashScreen) {
         setTimeout(() => {
@@ -683,6 +795,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     }
     
+    // Integração do botão shuffle: escuta clique e atualiza UI
+    const btnShuffle = document.getElementById('btnShuffle');
+    if (btnShuffle) {
+      btnShuffle.addEventListener('click', () => {
+        toggleShuffle();
+      });
+    }
+    updateShuffleButtonUI();
+
     tocarMusica();
     iconePlayPause.src = 'icones/play.png';
     console.log('Sportfree script.js carregado e DOM pronto.');
@@ -692,5 +813,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /*git add .
 git commit -m "Adicionando imagens e músicas faltantes"
-git push origin main
-*/
+git push origin main*/
