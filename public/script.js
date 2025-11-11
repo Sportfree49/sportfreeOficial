@@ -152,6 +152,31 @@ const musicas = [
         capa: "imagensCapa/nuncaMuda.PNG"
     },
     {
+        nome: "Famosinha",
+        arquivo: "pasta_musicas/famosinha.mp3",
+        capa: "imagensCapa/famosinha.jpg"
+    },
+    {
+        nome: "Faz o M",
+        arquivo: "pasta_musicas/fazOM.mp3",
+        capa: "imagensCapa/fazOM.jpg"
+    },
+    {
+        nome: "Onda da Balinha",
+        arquivo: "pasta_musicas/ondaDaBalinha.mp3",
+        capa: "imagensCapa/ondaDaBalinha.jpg"
+    },
+    {
+        nome: "Sequencia Feiticeira",
+        arquivo: "pasta_musicas/sequenciaFeiticeira.mp3",
+        capa: "imagensCapa/sequenciaFeiticeira.jpg"
+    },
+    {
+        nome: "Construção de Amor",
+        arquivo: "pasta_musicas/construcaoDeAmor.mp3",
+        capa: "imagensCapa/construcaoDeAmor.jpg"
+    },
+    {
         nome: "Se não quer Passa a Vez",
         arquivo: "pasta_musicas/passaAvez.mp3",
         capa: "imagensCapa/passaAvez.jpg"
