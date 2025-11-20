@@ -167,6 +167,11 @@ const musicas = [
         capa: "imagensCapa/ondaDaBalinha.jpg"
     },
     {
+        nome: "Posso até não te dar flores",
+        arquivo: "pasta_musicas/possoatenaodarflores.mp3",
+        capa: "imagensCapa/possoatenaodarflores.png"
+    },
+    {
         nome: "Sequencia Feiticeira",
         arquivo: "pasta_musicas/sequenciaFeiticeira.mp3",
         capa: "imagensCapa/sequenciaFeiticeira.jpg"
