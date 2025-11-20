@@ -52,6 +52,7 @@ const staticAssets = [
   '/imagensCapa/famosinha.jpg',
   '/imagensCapa/fazOM.jpg',
   '/imagensCapa/ondaDaBalinha.jpg',
+  '/imagensCapa/possoatenaodarflores.png',
   '/imagensCapa/sequenciaFeiticeira.jpg',
   '/imagensCapa/construcaoDeAmor.jpg',
   '/imagensCapa/nuncaMuda.PNG',
