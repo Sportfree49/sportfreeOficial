@@ -69,7 +69,7 @@ const staticAssets = [
   '/imagensCapa/glory.jpg',
   '/imagensCapa/montagemBandido.jpg',
   '/imagensCapa/slideDaTreme.jpg',
-  '/imagensCapa/automotivoDaTurbulencia.jpg',
+  '/imagensCapa/automotivoTurbulencia.jpg',
   '/imagensCapa/ritmadaInterestelar.jpg',
   '/favicon.ico'
 ];
