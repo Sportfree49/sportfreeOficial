@@ -182,6 +182,11 @@ const musicas = [
         capa: "imagensCapa/construcaoDeAmor.jpg"
     },
     {
+        nome: "P de pecado",
+        arquivo: "pasta_musicas/pdePecado.mp3",
+        capa: "imagensCapa/pdePecado.jpg"
+    },
+    {
         nome: "Se não quer Passa a Vez",
         arquivo: "pasta_musicas/passaAvez.mp3",
         capa: "imagensCapa/passaAvez.jpg"

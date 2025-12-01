@@ -55,6 +55,7 @@ const staticAssets = [
   '/imagensCapa/possoatenaodarflores.png',
   '/imagensCapa/sequenciaFeiticeira.jpg',
   '/imagensCapa/construcaoDeAmor.jpg',
+  '/imagensCapa/pdePecado.jpg', 
   '/imagensCapa/nuncaMuda.PNG',
   '/imagensCapa/passaAvez.jpg',
   '/imagensCapa/automotivoFenomenal.jpg',
