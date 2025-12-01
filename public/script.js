@@ -253,7 +253,7 @@ const musicas = [
     },
     {
         nome: "Automotivo da Turbulência",
-        arquivo: "pasta_musicas/automotivoDaTurbulencia.mp3",
+        arquivo: "pasta_musicas/automotivoTurbulencia.mp3",
         capa: "imagensCapa/automotivoDaTurbulencia.jpg"
     },
     {
