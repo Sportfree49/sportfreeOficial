@@ -43,6 +43,7 @@ const staticAssets = [
   '/imagensCapa/acelerada.jpg',
   '/imagensCapa/sequenciaDaDezessete.jpg',
   '/imagensCapa/cingadoze.png',
+  '/imagensCapa/euQueSabotei.png',
   '/imagensCapa/igualPcDaChina.jpg',
   '/imagensCapa/diaDelicia.png',
   '/imagensCapa/montagemLadrao.jpg',
@@ -70,7 +71,7 @@ const staticAssets = [
   '/imagensCapa/glory.jpg',
   '/imagensCapa/montagemBandido.jpg',
   '/imagensCapa/slideDaTreme.jpg',
-  '/imagensCapa/automotivoTurbulencia.jpg',
+  //'/imagensCapa/automotivoTurbulencia.jpg',
   '/imagensCapa/ritmadaInterestelar.jpg',
   '/favicon.ico'
 ];

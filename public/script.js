@@ -117,6 +117,11 @@ const musicas = [
         capa: "imagensCapa/cingadoze.png"
     },
     {
+        nome: "Eu que Sabotei",
+        arquivo: "pasta_musicas/euQueSabotei.mp3",
+        capa: "imagensCapa/euQueSabotei.png"
+    },
+    {
         nome: "Igual Pc da China",
         arquivo: "pasta_musicas/igualPcDaChina.mp3",
         capa: "imagensCapa/igualPcDaChina.jpg"
@@ -257,15 +262,17 @@ const musicas = [
         capa: "imagensCapa/slideDaTreme.jpg"
     },
     {
-        nome: "Automotivo da Turbulência",
-        arquivo: "pasta_musicas/automotivoTurbulencia.mp3",
-        capa: "imagensCapa/automotivoTurbulencia.jpg"
-    },
-    {
         nome: "Ritmada Interestelar",
         arquivo: "pasta_musicas/ritmada_Interestelar.mp3",
         capa: "imagensCapa/ritmadaInterestelar.jpg"
     },
+    
+    //{
+    //    nome: "Automotivo da Turbulência",
+    //    arquivo: "pasta_musicas/automotivoTurbulencia.mp3",
+    //    capa: "imagensCapa/automotivoTurbulencia.jpg"
+    //},
+    
 ];
 
 // ====== INTEGRAÇÃO: Shuffle (não altera `musicas`, usa array de índices) ======
