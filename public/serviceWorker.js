@@ -42,6 +42,7 @@ const staticAssets = [
   '/imagensCapa/funkOfGalactico.jpg',
   '/imagensCapa/acelerada.jpg',
   '/imagensCapa/sequenciaDaDezessete.jpg',
+  '/imagensCapa/cingadoze.png',
   '/imagensCapa/igualPcDaChina.jpg',
   '/imagensCapa/diaDelicia.png',
   '/imagensCapa/montagemLadrao.jpg',

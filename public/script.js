@@ -112,6 +112,11 @@ const musicas = [
         capa: "imagensCapa/sequenciaDaDezessete.jpg"
     },
     {
+        nome: "Baile do Cinga do 12",
+        arquivo: "pasta_musicas/cingadoze.mp3",
+        capa: "imagensCapa/cingadoze.png"
+    },
+    {
         nome: "Igual Pc da China",
         arquivo: "pasta_musicas/igualPcDaChina.mp3",
         capa: "imagensCapa/igualPcDaChina.jpg"
