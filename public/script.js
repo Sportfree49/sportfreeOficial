@@ -147,6 +147,11 @@ const musicas = [
         capa: "imagensCapa/menteMa.jpg"
     },
     {
+        nome: "No Batidão",
+        arquivo: "pasta_musicas/noBatidao.mp3",
+        capa: "imagensCapa/nobatidao.png"
+    },
+    {
         nome: "Montagem Pr Funk",
         arquivo: "pasta_musicas/montagemPrFunk.mp3",
         capa: "imagensCapa/montagemPrFunk.jpg"
@@ -210,6 +215,11 @@ const musicas = [
         nome: "Banheira de Espuma",
         arquivo: "pasta_musicas/banheiraDeEspuma.mp3",
         capa: "imagensCapa/banheiraDeEspuma.jpg"
+    },
+    {
+        nome: "Vem me Satisfazer",
+        arquivo: "pasta_musicas/VemSatisfazer.mp3",
+        capa: "imagensCapa/vemSatisfazer.png"
     },
     {
         nome: "Treinamento de Força",
