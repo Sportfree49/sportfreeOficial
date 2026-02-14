@@ -181,15 +181,23 @@ body {
     object-fit:cover
   }
   #fecharPlaylist{
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
     position: absolute;
     top: 10px;
     right: 10px;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 15px;
-    cursor: pointer;
-
+  }
+  #tituloPlaylist{
+    font-family: 'Audiowide', cursive;
+    font-size: 20px;
+      color: white;
+      text-shadow: 1px 1px 2px black;
   }
 
   #nome-musica{
