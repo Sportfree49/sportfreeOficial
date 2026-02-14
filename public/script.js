@@ -173,7 +173,7 @@ const musicas = [
     },
     {
         nome: "Faz o M",
-        arquivo: "pasta_musicas/fazOM.mp3",
+        arquivo: "pasta_musicas/fazOm.mp3",
         capa: "imagensCapa/fazOM.jpg"
     },
     {
