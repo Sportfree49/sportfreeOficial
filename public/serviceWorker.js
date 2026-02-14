@@ -61,7 +61,7 @@ const staticAssets = [
   '/imagensCapa/pdePecado.jpg', 
   '/imagensCapa/nuncaMuda.PNG',
   '/imagensCapa/passaAvez.jpg',
-  '/imagensCapa/automotivoFenomenal.jpg',
+  '/imagensCapa/automotivoFenomenal.png',
   '/imagensCapa/banheiraDeEspuma.jpg',
   '/imagensCapa/vemSatisfazer.png',
   '/imagensCapa/treinamentoDeForca.jpg',

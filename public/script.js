@@ -209,7 +209,7 @@ const musicas = [
     {
         nome: "Automotivo Fenomenal",
         arquivo: "pasta_musicas/automotivoFenomenal.mp3",
-        capa: "imagensCapa/automotivoFenomenal.jpg"
+        capa: "imagensCapa/automotivoFenomenal.png"
     },
     {
         nome: "Banheira de Espuma",
